@@ -30,7 +30,7 @@ class ApiService:
 
     async def get_image_by_task_id(self, task_id: uuid.UUID) -> Task:
         task = await self._api_repository.get_task_by_id(task_id)
-        if task.status == ImageProcessing.READY:
+        if task.status == ImageProcessing.READY.value:
             task.s3_url = await self._make_url_to_image(task_id)
         return task
 
@@ -51,5 +51,7 @@ class ApiService:
         logging.info("task.queued", extra={"task_id": task_id})
 
     async def _make_url_to_image(self, task_id: uuid.UUID) -> str:
-        base_url = urljoin(settings.s3_config.endpoint_url, settings.s3_config.bucket_name)
-        return urljoin(base_url, str(task_id)) + "result.tif"
+        base_url = urljoin(
+            urljoin(settings.s3_config.endpoint_url, settings.s3_config.bucket_name), "testka/testka/uploads/"
+        )
+        return urljoin(base_url, str(task_id)) + "/result.tif"

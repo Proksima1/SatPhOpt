@@ -21,27 +21,19 @@
 ### Установка
 1. Клонируйте репозиторий:
     ```bash
-    git clone https://github.com/Proksima1/SatPhOpt.git
-    cd SatPhOpt
+    git clone https://github.com/Proksima1/DeCloud.git
+    cd DeCloud
     ```
 2. Установите зависимости для бэкенда:
     ```bash
-    cd backend
     make setup
     ```
-3. Установите зависимости для фронтенда:
-    ```bash
-    cd ../frontend
-    npm install
-    ```
 ### Запуск
-1. Запустите бэкенд:
+1. Для запуска основного сервиса:
     ```bash
-    cd backend
-    python manage.py runserver
+    make run-api
     ```
-2. Запустите фронтенд:
+2. Для запуска ml-сервиса:
     ```bash
-    cd ../frontend
-    npm start
+    make run-api
     ```
